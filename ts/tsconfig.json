@@ -6,6 +6,5 @@
     "sourceMap": true,
     "watch": true,
     "out": "app.js",
-    "strictNullChecks": false
   }
 }
