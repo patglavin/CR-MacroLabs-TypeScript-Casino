@@ -7,4 +7,5 @@ var btn = document.getElementById('submit');
 var inputField = document.getElementById("user_input");
 // var entry = document.getElementById('user_input').innerText;
 btn.addEventListener("click", function (e) { return addToDisplayText(inputField.value); });
+alert('eyyyyyyyyy');
 //# sourceMappingURL=app.js.map
