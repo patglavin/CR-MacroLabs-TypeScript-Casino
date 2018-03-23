@@ -5,7 +5,7 @@
     "noImplicitAny": false,
     "sourceMap": true,
     "watch": true,
-    "out": "js/greeter.js",
+    "out": "app.js",
     "strictNullChecks": false
   }
 }
