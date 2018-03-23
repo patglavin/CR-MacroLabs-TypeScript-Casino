@@ -1,10 +1,11 @@
 var el: HTMLElement = document.getElementById('display');
 
 function addToDisplayText(text: string) {
+    el.innerText += '\n';
     el.innerText += text;
 }
 
 var btn = document.getElementById('submit');
-var entry = document.getElementById('input');
-btn.addEventListener("click", (e:Event) => addToDisplayText(entry.innerText));
-btn.addEventListener("click", (e: Event) => alert('oh shit gambling'));
+var inputField: HTMLInputElement = <HTMLInputElement>document.getElementById("user_input");
+// var entry = document.getElementById('user_input').innerText;
+btn.addEventListener("click", (e: Event) => addToDisplayText(inputField.value));
