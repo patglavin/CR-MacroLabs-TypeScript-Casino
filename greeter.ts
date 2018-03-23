@@ -4,4 +4,8 @@ function greeter(person) {
 
 let user = 'Amy User';
 
-document.body.innerHTML = greeter(user);
+var el: HTMLElement = document.getElementById('display');
+alert(el.id);
+
+// el.innerHTML = greeter(user);
+el.innerText = greeter(user);
