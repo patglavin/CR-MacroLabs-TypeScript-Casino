@@ -128,6 +128,10 @@ h1 {font-weight: bold; margin-left: 10px;}
     margin: 0 0 0 10px;
 }
 
+#submit {
+    margin: 15px 0 0 0;
+}
+
 #menu ul {
     list-style-type: none;
 }
