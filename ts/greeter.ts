@@ -1,21 +1,19 @@
 var el: HTMLElement = document.getElementById('display');
+let userInput;
 
 function addToDisplayText(text: string) {
     el.innerText += '\n';
     el.innerText += text;
 }
 
-function interpret(playerInput:string) {
-    if (playerInput == 'yes') {
-        addToDisplayText('you win');
-    } else {
-        addToDisplayText('you lose');
-    }
+function setInput(newInput:string) {
+    userInput = newInput;
 }
-
-addToDisplayText("pick yes");
 
 var btn = document.getElementById('submit');
 var inputField: HTMLInputElement = <HTMLInputElement>document.getElementById("user_input");
 // var entry = document.getElementById('user_input').innerText;
-btn.addEventListener("click", (e: Event) => interpret(inputField.value));
+btn.addEventListener("click", (e: Event) => setInput(inputField.value));
+btn.addEventListener("click", (e:Event) => addToDisplayText(userInput));
+btn.addEventListener("click", (e: Event) => inputField.value = '');
+
