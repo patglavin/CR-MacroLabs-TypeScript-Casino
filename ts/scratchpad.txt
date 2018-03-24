@@ -1,0 +1,8 @@
+add text input on keyup, wait a second for them to stop typing
+inputField.onkeyup = function () {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            userInput = inputField.value;
+            addToDisplayText(inputField.value);
+        }, 1000);
+    }
