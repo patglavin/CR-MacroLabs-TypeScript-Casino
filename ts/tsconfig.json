@@ -2,9 +2,19 @@
   "compileOnSave": true,
   "compilerOptions": {
     "target": "es5",
-    "noImplicitAny": false,
     "sourceMap": true,
+    "noImplicitAny": false,
     "watch": true,
-    "out": "app.js",
-  }
+    "module": "commonjs",
+    "lib": [
+      "dom",
+      "es2015",
+      "es5",
+      "es6"
+    ]
+  },
+  "files": [
+    "greeter.ts",
+    "CasinoNav.ts"
+  ],
 }
