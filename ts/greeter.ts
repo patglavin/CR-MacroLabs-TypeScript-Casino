@@ -1,4 +1,4 @@
-import { CasinoNav } from "./CasinoNav";
+import {CasinoNav} from "./CasinoNav";
 let el: HTMLElement = document.getElementById('display');
 
 function addToDisplayText(text: string) {
