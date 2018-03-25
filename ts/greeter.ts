@@ -37,48 +37,54 @@ function acceptInput() {
     
 } 
 
-enum CardValue {
-    Two = 2,
-    Three = 3,
-    Four = 4,
-    Five = 5,
-    Six = 6,
-    Seven = 7,
-    Eight = 8,
-    Nine = 9,
-    Ten = 10,
-    Jack = 10,
-    Queen = 10,
-    King = 10,
-    Ace = 11,
-}
+let CardValues = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
-enum Suit {
-    Hearts,
-    Diamonds,
-    Clubs,
-    Spades,
-}
+let CardSuits = ['Hearts', 'Clubs', 'Diamonds', 'Spades'];
 
-class card {
-    value:CardValue;
-    suit:string;
-    constructor(parameters) {
-        
+function cardValueInterpret(valueToInterpret:string) : number {
+    if (valueToInterpret == 'J' || valueToInterpret == 'Q' || valueToInterpret == 'K') {
+        return 10;
+    } else if (valueToInterpret == 'A') {
+        return 11;
+    } else {
+        return parseInt(valueToInterpret);
     }
 }
 
-class deck {
-    cards;
+class Card {
+    value:string;
+    suit:string;
+    constructor(value:string, suit:string) {
+        this.value = value;
+        this.suit = suit;
+    }
 
+    public get getSuit(): string {
+        return this.suit;
+    }
+
+    public get getValue() : number {
+        return cardValueInterpret(this.value);
+    }
+}
+
+class Deck {
+    cards:Array<Card> = [];
     constructor() {
-        
+        for (var i = 0; i < 4; i++){
+            for(var j = 0; j < 13; j++){
+                let tempCard:Card = new Card(CardValues[j],CardSuits[i]);
+                this.cards.push(tempCard);
+                console.log(tempCard.value + " of " + tempCard.suit)
+            }
+        }
     }
 }
 
 class BlackJack {
+    deck: Deck;
     constructor() {
-
+        this.deck = new Deck();
     }
     turnOrder:number = 0;
     name:string;
