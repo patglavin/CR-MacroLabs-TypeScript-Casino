@@ -73,7 +73,7 @@ class Deck {
         }
         shuffle(this.cards);
         for (var k = 0; k < 52; k++) {
-            console.log(this.cards[k].value + " of " + this.cards[k].suit);
+            console.log(this.cards[k].value + " of " + this.cards[k].suit + " value of " + cardValueInterpret(this.cards[k].value));
         }
     }
 }
