@@ -13,7 +13,7 @@ class dealer {
             this.game.dealerDraw(true);
             if (this.bustCheck()) {
                 addToDisplayText('Dealer busts!');
-                break;
+                this.bust = true;
             }
             addToDisplayText('Dealer final hand value at ' + this.calcHandValue());
         }
