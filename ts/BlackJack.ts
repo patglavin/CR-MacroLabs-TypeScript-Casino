@@ -34,6 +34,10 @@ class BlackJack {
                 this.playerDraw();
                 console.log('hitting');
                 this.calcHandValue(this.playerHand);
+                if (this.bustCheck(this.playerHand)) {
+                    addToDisplayText('you lose!')
+                    this.turnOrder += 1
+                }
                 addToDisplayText('would you like to hit again?');
             } else {
                 this.turnOrder += 1
@@ -87,5 +91,16 @@ class BlackJack {
             handValue += cardValueInterpret(card.value);
         });
         addToDisplayText('Current hand value is ' + handValue)
+    }
+
+    bustCheck(hand: Array<Card>) : boolean{
+        let handValue: number = 0;
+        hand.forEach(card => {
+            handValue += cardValueInterpret(card.value);
+        });
+        if (handValue > 21) {
+            console.log('bust')
+            return true;
+        }
     }
 }
