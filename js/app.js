@@ -98,10 +98,29 @@ class BlackJack {
             console.log('turn 1 take funds, deal');
             this.playerDrawFirstHand();
             this.dealerDrawFirstHand();
-            addToDisplayText('would you like to bet?');
+            this.calcHandValue(this.playerHand);
+            addToDisplayText('please place your bet');
         }
         else if (this.turnOrder == 2) {
             this.betStep();
+            addToDisplayText('you bet ' + this.bet + ' chips.');
+            this.turnOrder += 1;
+            addToDisplayText('Would you like to hit?');
+        }
+        else if (this.turnOrder == 3) {
+            if (inputField.value == 'yes') {
+                this.playerDraw();
+                console.log('hitting');
+                this.calcHandValue(this.playerHand);
+                addToDisplayText('would you like to hit again?');
+            }
+            else {
+                this.turnOrder += 1;
+            }
+            inputField.value = '';
+        }
+        else if (this.turnOrder == 4) {
+            addToDisplayText('after hit');
         }
     }
     getName() {
@@ -135,7 +154,19 @@ class BlackJack {
         console.log('dealer initial hand');
     }
     betStep() {
-        addToDisplayText('ah shit i didnt plan for this');
+        console.log('bet of ' + inputField.value);
+        this.bet = parseInt(inputField.value);
+        inputField.value = '';
+    }
+    hitStep() {
+        this.playerDraw();
+    }
+    calcHandValue(hand) {
+        let handValue = 0;
+        hand.forEach(card => {
+            handValue += cardValueInterpret(card.value);
+        });
+        addToDisplayText('Current hand value is ' + handValue);
     }
 }
 blackJackTurn();
