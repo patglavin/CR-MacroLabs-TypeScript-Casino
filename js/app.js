@@ -40,18 +40,6 @@ function cardValueInterpret(valueToInterpret) {
         return parseInt(valueToInterpret);
     }
 }
-class Card {
-    constructor(value, suit) {
-        this.value = value;
-        this.suit = suit;
-    }
-    get getSuit() {
-        return this.suit;
-    }
-    get getValue() {
-        return cardValueInterpret(this.value);
-    }
-}
 function shuffle(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));

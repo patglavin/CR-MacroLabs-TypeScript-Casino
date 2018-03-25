@@ -50,23 +50,6 @@ function cardValueInterpret(valueToInterpret:string) : number {
     }
 }
 
-class Card {
-    value:string;
-    suit:string;
-    constructor(value:string, suit:string) {
-        this.value = value;
-        this.suit = suit;
-    }
-
-    public get getSuit(): string {
-        return this.suit;
-    }
-
-    public get getValue() : number {
-        return cardValueInterpret(this.value);
-    }
-}
-
 function shuffle(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
