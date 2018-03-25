@@ -121,12 +121,33 @@ class BlackJack {
         }
     }
     winCheck() {
-        if (this.player.bust) {
-            addToDisplayText('you bust dawg');
+        if (this.calcHandValue(this.player.hand) > this.calcHandValue(this.dealer.hand)) {
+            this.winBet();
         }
-        if (this.dealer.bust && !this.player.bust) {
-            addToDisplayText('ok u win');
+        else if (this.player.bust == true) {
+            this.loseBet();
         }
+        else if (this.bustCheck(this.player.hand) == false && this.bustCheck(this.dealer.hand) == true) {
+            this.winBet();
+        }
+        else if (this.calcHandValue(this.player.hand) === this.calcHandValue(this.dealer.hand)) {
+            this.drawBet();
+        }
+        else {
+            this.loseBet();
+        }
+    }
+    winBet() {
+        this.player.funds += this.bet;
+        addToDisplayText('You win! Your new balance is ' + this.player.funds);
+    }
+    loseBet() {
+        this.player.funds -= this.bet;
+        addToDisplayText('You lose! Your new balance is ' + this.player.funds);
+    }
+    drawBet() {
+        this.bet = 0;
+        addToDisplayText('Its a draw!');
     }
 }
 //# sourceMappingURL=BlackJack.js.map
