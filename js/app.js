@@ -95,10 +95,13 @@ class BlackJack {
             this.getFunds();
             addToDisplayText('You have ' + userFunds + ' chips');
             this.turnOrder += 1;
-            console.log('turn 1 take funds');
+            console.log('turn 1 take funds, deal');
+            this.playerDrawFirstHand();
+            this.dealerDrawFirstHand();
+            addToDisplayText('would you like to bet?');
         }
         else if (this.turnOrder == 2) {
-            console.log('turn 2 alert funds');
+            this.betStep();
         }
     }
     getName() {
@@ -110,6 +113,29 @@ class BlackJack {
         clearInput();
     }
     playerDraw() {
+        let tempCard = this.deck.cards.pop();
+        this.playerHand.push(tempCard);
+        addToDisplayText(userName + " drew " + tempCard.value + " of " + tempCard.suit);
+        console.log('player drew ' + tempCard.value + " of " + tempCard.suit);
+    }
+    playerDrawFirstHand() {
+        this.playerDraw();
+        this.playerDraw();
+        console.log('player initial hand');
+    }
+    dealerDraw() {
+        let tempCard = this.deck.cards.pop();
+        this.dealerHand.push(tempCard);
+        addToDisplayText("Dealer drew " + tempCard.value + " of " + tempCard.suit);
+        console.log('dealer drew ' + tempCard.value + " of " + tempCard.suit);
+    }
+    dealerDrawFirstHand() {
+        this.dealerDraw();
+        this.dealerDraw();
+        console.log('dealer initial hand');
+    }
+    betStep() {
+        addToDisplayText('ah shit i didnt plan for this');
     }
 }
 blackJackTurn();
