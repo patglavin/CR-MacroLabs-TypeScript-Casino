@@ -53,6 +53,14 @@ class Card {
         return cardValueInterpret(this.value);
     }
 }
+function shuffle(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
 class Deck {
     constructor() {
         this.cards = [];
@@ -62,6 +70,10 @@ class Deck {
                 this.cards.push(tempCard);
                 console.log(tempCard.value + " of " + tempCard.suit);
             }
+        }
+        shuffle(this.cards);
+        for (var k = 0; k < 52; k++) {
+            console.log(this.cards[k].value + " of " + this.cards[k].suit);
         }
     }
 }
