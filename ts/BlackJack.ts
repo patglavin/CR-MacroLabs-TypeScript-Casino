@@ -3,6 +3,8 @@ class BlackJack {
     dealer:dealer;
     player:Player;
     bet: number;
+    userFunds:number = 0;
+    userName:string;
     constructor() {
         this.deck = new Deck();
         this.dealer = new dealer(this);
@@ -17,10 +19,11 @@ class BlackJack {
             this.turnOrder += 1;
             console.log('turn 0 take name')
         } else if (this.turnOrder == 1) {
-            this.player = new Player(userName, userFunds);
             addToDisplayText('Hello ' + userName);
             this.getFunds();
+            this.player = new Player(this.userName, this.userFunds);
             addToDisplayText('You have ' + userFunds + ' chips')
+            console.log('player funds at ' + this.player.funds);
             this.turnOrder += 1;
             console.log('turn 1 take funds, deal')
             this.playerDrawFirstHand();
@@ -59,11 +62,11 @@ class BlackJack {
         }
     }
     getName() {
-        userName = inputField.value;
+        this.userName = inputField.value;
         clearInput();
     }
     getFunds() {
-        userFunds = parseInt(inputField.value);
+        this.userFunds = parseInt(inputField.value);
         clearInput();
     }
     playerDraw() {
@@ -93,8 +96,8 @@ class BlackJack {
         console.log('dealer initial hand');
     }
     betStep() {
-        console.log('bet of ' + inputField.value);
         this.bet = parseInt(inputField.value);
+        console.log('bet is now ' + this.bet)
         inputField.value = '';
     }
     hitStep() {
@@ -136,11 +139,13 @@ class BlackJack {
 
     winBet(){
         this.player.funds += this.bet;
+        console.log('win, funds at ' + this.player.funds);
         addToDisplayText('You win! Your new balance is ' + this.player.funds);
     }
 
     loseBet(){
         this.player.funds -= this.bet;
+        console.log('lose, funds at ' + this.player.funds);
         addToDisplayText('You lose! Your new balance is ' + this.player.funds);
     }
 
