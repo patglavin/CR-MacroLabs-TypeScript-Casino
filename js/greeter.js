@@ -13,9 +13,8 @@ function setInput(newInput) {
     userInput = newInput;
 }
 var btn = document.getElementById('submit');
-var startbtn = document.getElementById('start_game');
+var startbtn = document.getElementById('start');
 var inputField = document.getElementById("user_input");
-// var entry = document.getElementById('user_input').innerText;
 btn.addEventListener("click", (e) => setInput(inputField.value));
 btn.addEventListener("click", (e) => addToDisplayText('you input ' + userInput));
 function clearInput() {
@@ -68,35 +67,49 @@ class Deck {
             for (var j = 0; j < 13; j++) {
                 let tempCard = new Card(CardValues[j], CardSuits[i]);
                 this.cards.push(tempCard);
-                console.log(tempCard.value + " of " + tempCard.suit);
+                // console.log(tempCard.value + " of " + tempCard.suit)
             }
         }
         shuffle(this.cards);
-        for (var k = 0; k < 52; k++) {
-            console.log(this.cards[k].value + " of " + this.cards[k].suit + " value of " + cardValueInterpret(this.cards[k].value));
-        }
+        // for (var k = 0; k < 52; k++){
+        //     console.log(this.cards[k].value + " of " + this.cards[k].suit + " value of " + cardValueInterpret(this.cards[k].value))
+        // }
     }
 }
 class BlackJack {
     constructor() {
+        this.playerHand = [];
+        this.dealerHand = [];
         this.turnOrder = 0;
         this.deck = new Deck();
     }
     updateInput() {
         if (this.turnOrder == 0) {
-            this.initialTurn();
+            this.getName();
+            addToDisplayText('How much would you like to gamble with?');
+            this.turnOrder += 1;
+            console.log('turn 0 take name');
         }
         else if (this.turnOrder == 1) {
-            alert('turn 1');
-            addToDisplayText(this.name);
+            addToDisplayText('Hello ' + userName);
+            this.getFunds();
+            addToDisplayText('You have ' + userFunds + ' chips');
             this.turnOrder += 1;
+            console.log('turn 1 take funds');
+        }
+        else if (this.turnOrder == 2) {
+            console.log('turn 2 alert funds');
         }
     }
-    initialTurn() {
-        alert('turn 0');
-        this.name = inputField.value;
+    getName() {
+        userName = inputField.value;
         clearInput();
-        this.turnOrder += 1;
+    }
+    getFunds() {
+        userFunds = parseInt(inputField.value);
+        clearInput();
+    }
+    playerDraw() {
     }
 }
 blackJackTurn();
