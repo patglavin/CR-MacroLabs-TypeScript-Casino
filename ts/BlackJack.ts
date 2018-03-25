@@ -1,14 +1,16 @@
 class BlackJack {
     deck: Deck;
     playerHand: Array<Card> = [];
-    dealerHand: Array<Card> = [];
+    dealer:dealer;
     bet: number;
     constructor() {
         this.deck = new Deck();
+        this.dealer = new dealer(this);
     }
     turnOrder: number = 0;
     name: string;
     updateInput() {
+        console.log(this.turnOrder);
         if (this.turnOrder == 0) {
             this.getName();
             addToDisplayText('How much would you like to gamble with?');
@@ -46,7 +48,7 @@ class BlackJack {
         } else if (this.turnOrder == 4) {
             console.log('dealer turn');
             addToDisplayText('Dealer Taking Turn');
-            this.dealerTurn();
+            this.dealer.dealerTurn();
         }
     }
     getName() {
@@ -70,7 +72,7 @@ class BlackJack {
     }
     dealerDraw(show:boolean) {
         let tempCard = this.deck.cards.pop();
-        this.dealerHand.push(tempCard);
+        this.dealer.hand.push(tempCard);
         if (show == true) {
             addToDisplayText("Dealer drew " + tempCard.value + " of " + tempCard.suit);
         } else {
@@ -111,15 +113,5 @@ class BlackJack {
         }
     }
 
-    dealerTurn(){
-        while (this.calcHandValue(this.dealerHand) < 17) {
-            addToDisplayText('Dealer hand value at ' + this.calcHandValue(this.dealerHand));
-            this.dealerDraw(true);
-            if (this.bustCheck) {
-                addToDisplayText('Dealer busts!');
-                break;
-            }
-            addToDisplayText('Dealer final hand value at ' + this.calcHandValue(this.dealerHand));
-        }
-    }
+    
 }
