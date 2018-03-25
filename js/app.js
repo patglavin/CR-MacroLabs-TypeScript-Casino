@@ -17,6 +17,9 @@ var startbtn = document.getElementById('start');
 var inputField = document.getElementById("user_input");
 btn.addEventListener("click", (e) => setInput(inputField.value));
 btn.addEventListener("click", (e) => addToDisplayText('you input ' + userInput));
+var flipper = document.getElementById('coinflip');
+var coinflipper = new CoinFlip();
+flipper.addEventListener('click', (e) => coinflipper.flipCoin());
 function clearInput() {
     inputField.value = '';
 }

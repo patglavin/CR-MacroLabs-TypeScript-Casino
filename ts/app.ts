@@ -21,6 +21,10 @@ var inputField: HTMLInputElement = <HTMLInputElement>document.getElementById("us
 btn.addEventListener("click", (e: Event) => setInput(inputField.value));
 btn.addEventListener("click", (e:Event) => addToDisplayText('you input ' + userInput));
 
+var flipper:HTMLElement = document.getElementById('coinflip')
+var coinflipper:CoinFlip = new CoinFlip();
+flipper.addEventListener('click', (e:Event) => coinflipper.flipCoin());
+
 function clearInput() {
     inputField.value = '';
 }
