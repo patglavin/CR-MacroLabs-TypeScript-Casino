@@ -55,6 +55,8 @@ class BlackJack {
         else if (this.turnOrder == 5) {
             console.log('win check');
             addToDisplayText('Final result is...');
+            this.dealer.bustCheck();
+            this.player.bustCheck();
             this.winCheck();
             addToDisplayText('would you like to play another hand?');
             this.turnOrder += 1;

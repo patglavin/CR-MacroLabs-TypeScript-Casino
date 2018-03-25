@@ -25,8 +25,6 @@ function blackJackTurn() {
     btn.addEventListener("click", (e) => blackjack.updateInput());
 }
 var timeout = null;
-function acceptInput() {
-}
 let CardValues = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 let CardSuits = ['Hearts', 'Clubs', 'Diamonds', 'Spades'];
 function cardValueInterpret(valueToInterpret) {
