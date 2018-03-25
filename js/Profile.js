@@ -3,5 +3,23 @@ class Profile {
         this.name = name;
         this.chips = chips;
     }
+    get getName() {
+        return this.name;
+    }
+    get getChips() {
+        return this.chips;
+    }
+    set setName(v) {
+        this.name = v;
+    }
+    set setChips(v) {
+        this.chips = v;
+    }
+    addChips(bet) {
+        this.chips += bet;
+    }
+    subtractChips(bet) {
+        this.chips -= bet;
+    }
 }
 //# sourceMappingURL=Profile.js.map

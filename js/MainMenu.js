@@ -17,7 +17,7 @@ class MainMenu {
     getInitialFunds() {
         this.initialFunds = userInput;
         clearInput();
-        // btn.removeEventListener('click', this.getFundsEvent);
+        this.profile = new Profile(this.name, this.initialFunds);
         btn.addEventListener('click', this.gameChoice, { once: true });
         addToDisplayText('Alright, you\'ll start at ' + this.initialFunds);
         addToDisplayText('Which game would you like to play? We\'ve got\n - BlackJack');
