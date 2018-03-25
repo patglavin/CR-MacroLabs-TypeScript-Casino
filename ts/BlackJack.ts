@@ -19,17 +19,14 @@ class BlackJack {
             this.turnOrder += 1;
             console.log('turn 0 take name')
         } else if (this.turnOrder == 1) {
-            addToDisplayText('Hello ' + userName);
+            addToDisplayText('Hello ' + this.userName);
             this.getFunds();
             this.player = new Player(this.userName, this.userFunds);
-            addToDisplayText('You have ' + userFunds + ' chips')
+            addToDisplayText('You have ' + this.player.funds + ' chips')
             console.log('player funds at ' + this.player.funds);
             this.turnOrder += 1;
             console.log('turn 1 take funds, deal')
-            this.playerDrawFirstHand();
-            this.dealerDrawFirstHand();
-            this.calcHandValue(this.player.hand);
-            addToDisplayText('please place your bet');
+            this.newHand();
         } else if (this.turnOrder == 2) {
             this.betStep();
             addToDisplayText('you bet ' + this.bet + ' chips.')
@@ -40,7 +37,7 @@ class BlackJack {
                 this.playerDraw();
                 console.log('hitting');
                 this.calcHandValue(this.player.hand);
-                if (this.bustCheck(this.player.hand)) {
+                if (this.bustCheck(this.player.hand) == true) {
                     addToDisplayText('you bust!')
                     this.player.bust = true;
                     this.turnOrder += 1
@@ -59,6 +56,17 @@ class BlackJack {
             console.log('win check');
             addToDisplayText('Final result is...');
             this.winCheck();
+            addToDisplayText('would you like to play another hand?')
+            this.turnOrder += 1;
+        } else if(this.turnOrder == 6){
+            if (userInput == 'yes') {
+                this.turnOrder = 2;
+                this.subsequentHand();
+            } else {
+                addToDisplayText('ok goodbye forever');
+                this.turnOrder += 1;
+            }
+            inputField.value = '';
         }
     }
     getName() {
@@ -72,7 +80,7 @@ class BlackJack {
     playerDraw() {
         let tempCard = this.deck.cards.pop();
         this.player.hand.push(tempCard);
-        addToDisplayText(userName + " drew " + tempCard.value + " of " + tempCard.suit);
+        addToDisplayText(this.player.name + " drew " + tempCard.value + " of " + tempCard.suit);
         console.log('player drew ' + tempCard.value + " of " + tempCard.suit);
     }
     playerDrawFirstHand() {
@@ -128,7 +136,7 @@ class BlackJack {
             this.winBet();
         } else if (this.player.bust == true){
             this.loseBet();
-        } else if (this.bustCheck(this.player.hand) == false && this.bustCheck(this.dealer.hand) == true){
+        } else if (this.player.bust == false && this.dealer.bust == true){
             this.winBet();
         } else if (this.calcHandValue(this.player.hand) === this.calcHandValue(this.dealer.hand)){
             this.drawBet();
@@ -152,6 +160,24 @@ class BlackJack {
     drawBet(){
         this.bet = 0;
         addToDisplayText('Its a draw!')
+    }
+
+    newHand(){
+        this.playerDrawFirstHand();
+        this.dealerDrawFirstHand();
+        this.calcHandValue(this.player.hand);
+        addToDisplayText('please place your bet');
+    }
+
+    subsequentHand() {
+        this.deck = new Deck();
+        this.dealer = new dealer(this);
+        this.bet = 0;
+        this.player.hand = [];
+        this.playerDrawFirstHand();
+        this.dealerDrawFirstHand();
+        this.calcHandValue(this.player.hand);
+        addToDisplayText('please place your bet');
     }
     
 }
