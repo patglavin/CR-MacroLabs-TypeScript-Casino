@@ -1,4 +1,4 @@
-abstract class CardGame{
+abstract class CardGame implements Game{
     static cardValueInterpret(valueToInterpret: string): number {
         if (valueToInterpret == 'J' || valueToInterpret == 'Q' || valueToInterpret == 'K') {
             return 10;

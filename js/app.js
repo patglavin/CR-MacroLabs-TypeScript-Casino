@@ -23,9 +23,7 @@ flipper.addEventListener('click', (e) => coinflipper.flipCoin());
 function clearInput() {
     inputField.value = '';
 }
-function blackJackTurn() {
-    let blackjack = new BlackJack();
-    btn.addEventListener("click", (e) => blackjack.updateInput());
-}
-blackJackTurn();
+let mainMenu = new MainMenu();
+mainMenu.profileSetup();
+// blackJackTurn();
 //# sourceMappingURL=app.js.map

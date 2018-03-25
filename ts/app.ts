@@ -29,9 +29,7 @@ function clearInput() {
     inputField.value = '';
 }
 
-function blackJackTurn() {
-    let blackjack = new BlackJack();
-    btn.addEventListener("click", (e: Event) => blackjack.updateInput());
-}
+let mainMenu:MainMenu = new MainMenu();
+mainMenu.profileSetup();
 
-blackJackTurn();
+// blackJackTurn();
