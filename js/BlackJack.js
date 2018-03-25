@@ -46,7 +46,9 @@ class BlackJack {
             inputField.value = '';
         }
         else if (this.turnOrder == 4) {
-            addToDisplayText('after hit');
+            console.log('dealer turn');
+            addToDisplayText('Dealer Taking Turn');
+            this.dealerTurn();
         }
     }
     getName() {
@@ -68,15 +70,20 @@ class BlackJack {
         this.playerDraw();
         console.log('player initial hand');
     }
-    dealerDraw() {
+    dealerDraw(show) {
         let tempCard = this.deck.cards.pop();
         this.dealerHand.push(tempCard);
-        addToDisplayText("Dealer drew " + tempCard.value + " of " + tempCard.suit);
+        if (show == true) {
+            addToDisplayText("Dealer drew " + tempCard.value + " of " + tempCard.suit);
+        }
+        else {
+            addToDisplayText("Dealer drew one hidden card");
+        }
         console.log('dealer drew ' + tempCard.value + " of " + tempCard.suit);
     }
     dealerDrawFirstHand() {
-        this.dealerDraw();
-        this.dealerDraw();
+        this.dealerDraw(true);
+        this.dealerDraw(false);
         console.log('dealer initial hand');
     }
     betStep() {
@@ -93,6 +100,7 @@ class BlackJack {
             handValue += cardValueInterpret(card.value);
         });
         addToDisplayText('Current hand value is ' + handValue);
+        return handValue;
     }
     bustCheck(hand) {
         let handValue = 0;
@@ -102,6 +110,17 @@ class BlackJack {
         if (handValue > 21) {
             console.log('bust');
             return true;
+        }
+    }
+    dealerTurn() {
+        while (this.calcHandValue(this.dealerHand) < 17) {
+            addToDisplayText('Dealer hand value at ' + this.calcHandValue(this.dealerHand));
+            this.dealerDraw(true);
+            if (this.bustCheck) {
+                addToDisplayText('Dealer busts!');
+                break;
+            }
+            addToDisplayText('');
         }
     }
 }
