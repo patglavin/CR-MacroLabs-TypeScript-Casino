@@ -16,7 +16,7 @@ function setInput(newInput:string) {
 }
 
 var btn = document.getElementById('submit');
-var startbtn = document.getElementById('start')
+var startbtn = document.getElementById('start');
 var inputField: HTMLInputElement = <HTMLInputElement>document.getElementById("user_input");
 btn.addEventListener("click", (e: Event) => setInput(inputField.value));
 btn.addEventListener("click", (e:Event) => addToDisplayText('you input ' + userInput));
