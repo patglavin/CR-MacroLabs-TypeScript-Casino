@@ -29,12 +29,8 @@ class dealer {
             handValue += cardValueInterpret(card.value);
         });
         if (handValue > 21) {
-            if (this.aceAdjust()) {
-            }
-            else {
-                console.log('bust');
-                return true;
-            }
+            console.log('bust');
+            return true;
         }
         return false;
     }
