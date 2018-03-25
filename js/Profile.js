@@ -12,9 +12,6 @@ class Profile {
     set setName(v) {
         this.name = v;
     }
-    set setChips(v) {
-        this.chips = v;
-    }
     addChips(bet) {
         this.chips += bet;
     }

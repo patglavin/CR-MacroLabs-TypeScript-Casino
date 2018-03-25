@@ -1,28 +1,30 @@
-class Player {
-    constructor(name, funds) {
-        this.hand = [];
-        this.bust = false;
-        this.name = name;
-        this.funds = funds;
+class BlackJackPlayer {
+    profile:Profile;
+    hand:Array<Card> = [];
+    bust:boolean = false;
+
+    constructor(profile:Profile) {
+        this.profile = profile;
     }
+
     calcHandValue() {
-        let handValue = 0;
+        let handValue: number = 0;
         this.hand.forEach(card => {
             handValue += CardGame.cardValueInterpret(card.value);
         });
-        addToDisplayText('Current hand value is ' + handValue);
+        addToDisplayText('Current hand value is ' + handValue)
         return handValue;
     }
-    bustCheck() {
-        let handValue = 0;
+
+    bustCheck(): boolean {
+        let handValue: number = 0;
         this.hand.forEach(card => {
             handValue += CardGame.cardValueInterpret(card.value);
         });
         if (handValue > 21) {
-            console.log('bust');
+            console.log('bust')
             return true;
         }
         return false;
     }
 }
-//# sourceMappingURL=player.js.map

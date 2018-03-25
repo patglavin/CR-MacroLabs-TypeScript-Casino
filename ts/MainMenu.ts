@@ -20,7 +20,7 @@ class MainMenu{
     }
 
     getInitialFunds(){
-        this.initialFunds = userInput;
+        this.initialFunds = parseInt(userInput);
         clearInput();
         this.profile = new Profile(this.name, this.initialFunds);
         btn.addEventListener('click', this.gameChoice, {once:true})
@@ -33,6 +33,7 @@ class MainMenu{
         if (choice.toLowerCase() == 'blackjack') {
             this.blackJackTurn();
         } else {
+            clearInput();
             addToDisplayText('Invalid input, please try again.')
             addToDisplayText('Which game would you like to play? We\'ve got\n - BlackJack')
             btn.addEventListener('click', this.gameChoice, { once: true })
@@ -40,7 +41,7 @@ class MainMenu{
     }
 
     blackJackTurn() {
-        let blackjack = new BlackJack();
+        let blackjack = new BlackJack(this.profile);
         clearInput();
         blackjack.updateInput();
         btn.addEventListener("click", (e: Event) => blackjack.updateInput());

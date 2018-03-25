@@ -20,16 +20,11 @@ class Profile {
         this.name = v;
     }
 
-    
-    public set setChips(v : number) {
-        this.chips = v;
-    }
-
     public addChips(bet:number) {
         this.chips += bet;
     }
     
-    public subtractChips(bet: number) {
+    public subtractChips(bet:number) {
         this.chips -= bet;
     }
     

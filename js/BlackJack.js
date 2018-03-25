@@ -1,36 +1,28 @@
 class BlackJack extends CardGame {
-    constructor() {
+    constructor(profile) {
         super();
-        this.userFunds = 0;
         this.turnOrder = 0;
         this.deck = new Deck();
         this.dealer = new dealer(this);
+        this.player = new BlackJackPlayer(profile);
     }
     updateInput() {
         console.log(this.turnOrder);
         if (this.turnOrder == 0) {
-            this.getName();
-            addToDisplayText('How much would you like to gamble with?');
+            addToDisplayText('Hello ' + this.player.profile.getName);
+            this.newHand();
             this.turnOrder += 1;
-            console.log('turn 0 take name');
+            console.log('turn 0 new hand');
+            addToDisplayText('Please place your bet.');
         }
         else if (this.turnOrder == 1) {
-            addToDisplayText('Hello ' + this.userName);
-            this.getFunds();
-            this.player = new Player(this.userName, this.userFunds);
-            addToDisplayText('You have ' + this.player.funds + ' chips');
-            console.log('player funds at ' + this.player.funds);
-            this.turnOrder += 1;
-            console.log('turn 1 take funds, deal');
-            this.newHand();
-        }
-        else if (this.turnOrder == 2) {
             this.betStep();
             addToDisplayText('you bet ' + this.bet + ' chips.');
-            this.turnOrder += 1;
             addToDisplayText('Would you like to hit?');
+            this.turnOrder += 1;
+            console.log('turn 1');
         }
-        else if (this.turnOrder == 3) {
+        else if (this.turnOrder == 2) {
             if (inputField.value == 'yes') {
                 this.playerDraw();
                 console.log('hitting');
@@ -46,14 +38,10 @@ class BlackJack extends CardGame {
                 this.turnOrder += 1;
             }
             inputField.value = '';
-        }
-        else if (this.turnOrder == 4) {
             console.log('dealer turn');
             addToDisplayText('Dealer Taking Turn');
             this.dealer.dealerTurn();
             this.turnOrder += 1;
-        }
-        else if (this.turnOrder == 5) {
             console.log('win check');
             addToDisplayText('Final result is...');
             this.dealer.bustCheck();
@@ -62,30 +50,21 @@ class BlackJack extends CardGame {
             addToDisplayText('would you like to play another hand?');
             this.turnOrder += 1;
         }
-        else if (this.turnOrder == 6) {
+        else if (this.turnOrder == 3) {
             if (userInput == 'yes') {
-                this.turnOrder = 2;
+                this.turnOrder = 0;
                 this.subsequentHand();
             }
             else {
                 addToDisplayText('ok goodbye forever');
-                this.turnOrder += 1;
             }
             inputField.value = '';
         }
     }
-    getName() {
-        this.userName = inputField.value;
-        clearInput();
-    }
-    getFunds() {
-        this.userFunds = parseInt(inputField.value);
-        clearInput();
-    }
     playerDraw() {
         let tempCard = this.deck.cards.pop();
         this.player.hand.push(tempCard);
-        addToDisplayText(this.player.name + " drew " + tempCard.value + " of " + tempCard.suit);
+        addToDisplayText(this.player.profile.getName + " drew " + tempCard.value + " of " + tempCard.suit);
         console.log('player drew ' + tempCard.value + " of " + tempCard.suit);
     }
     playerDrawFirstHand() {
@@ -153,14 +132,14 @@ class BlackJack extends CardGame {
         }
     }
     winBet() {
-        this.player.funds += this.bet;
-        console.log('win, funds at ' + this.player.funds);
-        addToDisplayText('You win! Your new balance is ' + this.player.funds);
+        this.player.profile.addChips(this.bet);
+        console.log('player win, current chip count at ' + this.player.profile.getChips);
+        addToDisplayText('You win! Your new balance is ' + this.player.profile.getChips);
     }
     loseBet() {
-        this.player.funds -= this.bet;
-        console.log('lose, funds at ' + this.player.funds);
-        addToDisplayText('You lose! Your new balance is ' + this.player.funds);
+        this.player.profile.subtractChips(this.bet);
+        console.log('player lose, current chip count at ' + this.player.profile.getChips);
+        addToDisplayText('You lose! Your new balance is ' + this.player.profile.getChips);
     }
     drawBet() {
         this.bet = 0;
