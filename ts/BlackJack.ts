@@ -1,4 +1,4 @@
-class BlackJack {
+class BlackJack extends CardGame{
     deck: Deck;
     dealer:dealer;
     player:Player;
@@ -6,6 +6,7 @@ class BlackJack {
     userFunds:number = 0;
     userName:string;
     constructor() {
+        super();
         this.deck = new Deck();
         this.dealer = new dealer(this);
     }
@@ -116,7 +117,7 @@ class BlackJack {
     calcHandValue(hand: Array<Card>) {
         let handValue: number = 0;
         hand.forEach(card => {
-            handValue += cardValueInterpret(card.value);
+            handValue += CardGame.cardValueInterpret(card.value);
         });
         addToDisplayText('Current hand value is ' + handValue)
         return handValue;
@@ -125,7 +126,7 @@ class BlackJack {
     bustCheck(hand: Array<Card>) : boolean{
         let handValue: number = 0;
         hand.forEach(card => {
-            handValue += cardValueInterpret(card.value);
+            handValue += CardGame.cardValueInterpret(card.value);
         });
         if (handValue > 21) {
             console.log('bust')

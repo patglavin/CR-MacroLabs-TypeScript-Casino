@@ -8,7 +8,7 @@ class Player {
     calcHandValue() {
         let handValue = 0;
         this.hand.forEach(card => {
-            handValue += cardValueInterpret(card.value);
+            handValue += CardGame.cardValueInterpret(card.value);
         });
         addToDisplayText('Current hand value is ' + handValue);
         return handValue;
@@ -16,7 +16,7 @@ class Player {
     bustCheck() {
         let handValue = 0;
         this.hand.forEach(card => {
-            handValue += cardValueInterpret(card.value);
+            handValue += CardGame.cardValueInterpret(card.value);
         });
         if (handValue > 21) {
             console.log('bust');
