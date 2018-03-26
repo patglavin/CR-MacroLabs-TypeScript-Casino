@@ -1,5 +1,5 @@
 var el: HTMLElement = document.getElementById('display');
-let userInput;
+let userInput:string;
 let currentGame = false;
 let userName:string;
 let userFunds:number;

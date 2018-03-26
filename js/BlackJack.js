@@ -2,18 +2,15 @@ class BlackJack extends CardGame {
     constructor(profile) {
         super();
         this.turnOrder = 0;
-        this.deck = new Deck();
-        this.dealer = new dealer(this);
         this.player = new BlackJackPlayer(profile);
+        addToDisplayText('Hello ' + this.player.profile.getName + '! Welcome to the BlackJack Table.');
     }
     updateInput() {
         console.log(this.turnOrder);
         if (this.turnOrder == 0) {
-            addToDisplayText('Hello ' + this.player.profile.getName);
             this.newHand();
             this.turnOrder += 1;
             console.log('turn 0 new hand');
-            addToDisplayText('Please place your bet.');
         }
         else if (this.turnOrder == 1) {
             this.betStep();
@@ -23,19 +20,20 @@ class BlackJack extends CardGame {
             console.log('turn 1');
         }
         else if (this.turnOrder == 2) {
-            if (inputField.value == 'yes') {
+            clearInput();
+            if (userInput == 'yes' && this.player.bust == false) {
                 this.playerDraw();
                 console.log('hitting');
                 this.calcHandValue(this.player.hand);
                 if (this.bustCheck(this.player.hand) == true) {
-                    addToDisplayText('you bust!');
+                    addToDisplayText('You bust!');
                     this.player.bust = true;
-                    this.turnOrder += 1;
                 }
                 addToDisplayText('would you like to hit again?');
+                return;
             }
-            else {
-                this.turnOrder += 1;
+            if (userInput == 'yes' && this.player.bust == true) {
+                addToDisplayText('Naw, you already went bust.');
             }
             inputField.value = '';
             console.log('dealer turn');
@@ -48,12 +46,13 @@ class BlackJack extends CardGame {
             this.player.bustCheck();
             this.winCheck();
             addToDisplayText('would you like to play another hand?');
-            this.turnOrder += 1;
         }
         else if (this.turnOrder == 3) {
             if (userInput == 'yes') {
+                console.log('restarting');
                 this.turnOrder = 0;
-                this.subsequentHand();
+                this.newHand();
+                this.updateInput();
             }
             else {
                 addToDisplayText('ok goodbye forever');
@@ -146,12 +145,6 @@ class BlackJack extends CardGame {
         addToDisplayText('Its a draw!');
     }
     newHand() {
-        this.playerDrawFirstHand();
-        this.dealerDrawFirstHand();
-        this.calcHandValue(this.player.hand);
-        addToDisplayText('please place your bet');
-    }
-    subsequentHand() {
         this.deck = new Deck();
         this.dealer = new dealer(this);
         this.bet = 0;
@@ -159,7 +152,7 @@ class BlackJack extends CardGame {
         this.playerDrawFirstHand();
         this.dealerDrawFirstHand();
         this.calcHandValue(this.player.hand);
-        addToDisplayText('please place your bet');
+        addToDisplayText('Please place your bet!');
     }
 }
 //# sourceMappingURL=BlackJack.js.map
