@@ -51,7 +51,6 @@ class BlackJack extends CardGame {
             if (userInput == 'yes') {
                 console.log('restarting');
                 this.turnOrder = 0;
-                this.newHand();
                 this.updateInput();
             }
             else {
