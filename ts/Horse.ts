@@ -2,6 +2,7 @@ class Horse{
     name:string;
     baseSpeed:number;
     payout:number;
+    raceSpeed:number;
 
     constructor(name:string, speed:number){
         this.name = name;
@@ -10,8 +11,8 @@ class Horse{
     }
 
     run():number{
-        let raceSpeed: number = (Math.floor(Math.random() * 6) * this.baseSpeed);
-        console.log(raceSpeed);
-        return raceSpeed;
+        this.raceSpeed = (Math.floor(Math.random() * 3) * this.baseSpeed);
+        console.log(this.name + " ran at " + this.raceSpeed);
+        return this.raceSpeed;
     }    
 }

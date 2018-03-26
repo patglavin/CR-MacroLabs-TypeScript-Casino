@@ -48,7 +48,7 @@ class MainMenu {
         btn.addEventListener("click", (e) => blackjack.updateInput());
     }
     beginHorseRace() {
-        let horseRace = new HorseRace();
+        let horseRace = new HorseRace(this.profile);
         clearInput();
         horseRace.begin();
     }

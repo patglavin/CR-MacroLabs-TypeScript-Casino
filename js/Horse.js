@@ -5,9 +5,9 @@ class Horse {
         this.payout = (3 - this.baseSpeed);
     }
     run() {
-        let raceSpeed = (Math.floor(Math.random() * 6) * this.baseSpeed);
-        console.log(raceSpeed);
-        return raceSpeed;
+        this.raceSpeed = (Math.floor(Math.random() * 3) * this.baseSpeed);
+        console.log(this.name + " ran at " + this.raceSpeed);
+        return this.raceSpeed;
     }
 }
 //# sourceMappingURL=Horse.js.map
