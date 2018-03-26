@@ -1,11 +1,12 @@
 class Horse{
     name:string;
     baseSpeed:number;
-    odds:number;
+    payout:number;
 
     constructor(name:string, speed:number){
         this.name = name;
         this.baseSpeed = speed;
+        this.payout = (3 - this.baseSpeed);
     }
 
     run():number{
