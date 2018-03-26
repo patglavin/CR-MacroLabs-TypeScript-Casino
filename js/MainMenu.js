@@ -20,7 +20,7 @@ class MainMenu {
         this.profile = new Profile(this.name, this.initialFunds);
         btn.addEventListener('click', this.gameChoice, { once: true });
         addToDisplayText('Alright, you\'ll start at ' + this.initialFunds);
-        addToDisplayText('Which game would you like to play? We\'ve got\n - BlackJack\n - No Secret Text Adventures');
+        addToDisplayText('Which game would you like to play? We\'ve got\n - BlackJack\n - Horse Racing');
     }
     getGameChoice() {
         let choice = userInput;
@@ -28,8 +28,11 @@ class MainMenu {
             this.blackJackTurn();
         }
         else if (choice.toLowerCase() == 'secret') {
-            addToDisplayText('ah shit i forgot to add a text game');
+            addToDisplayText('oh no i forgot to add a text game');
             clearInput();
+        }
+        else if (choice.toLowerCase() == 'horse') {
+            this.beginHorseRace();
         }
         else {
             clearInput();
@@ -43,6 +46,11 @@ class MainMenu {
         clearInput();
         blackjack.updateInput();
         btn.addEventListener("click", (e) => blackjack.updateInput());
+    }
+    beginHorseRace() {
+        let horseRace = new HorseRace();
+        clearInput();
+        horseRace.begin();
     }
 }
 //# sourceMappingURL=MainMenu.js.map
