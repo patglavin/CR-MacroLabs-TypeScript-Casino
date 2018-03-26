@@ -4,7 +4,6 @@ let userInput:string;
 let currentGame = false;
 let userName:string;
 let userFunds:number;
-let turnEvent;
 
 function addToDisplayText(text: string) {
     if (text != '') {

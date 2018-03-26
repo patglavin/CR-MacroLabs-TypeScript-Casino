@@ -4,7 +4,6 @@ let userInput;
 let currentGame = false;
 let userName;
 let userFunds;
-let turnEvent;
 function addToDisplayText(text) {
     if (text != '') {
         el.innerText += '\n';

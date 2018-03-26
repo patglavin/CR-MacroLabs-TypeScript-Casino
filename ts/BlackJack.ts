@@ -58,7 +58,6 @@ class BlackJack extends CardGame{
                 this.updateInput();
             } else {
                 addToDisplayText('ok goodbye forever');
-                btn.removeEventListener('click', turnEvent());
                 mainMenu.getGameChoice();
             }
             inputField.value = '';
