@@ -32,6 +32,8 @@ class MainMenu{
         let choice: string = userInput;
         if (choice.toLowerCase() == 'blackjack') {
             this.blackJackTurn();
+        } else if (choice.toLowerCase() == 'secret'){
+            
         } else {
             clearInput();
             addToDisplayText('Invalid input, please try again.')

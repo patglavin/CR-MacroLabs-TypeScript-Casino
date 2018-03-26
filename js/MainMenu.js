@@ -27,6 +27,8 @@ class MainMenu {
         if (choice.toLowerCase() == 'blackjack') {
             this.blackJackTurn();
         }
+        else if (choice.toLowerCase() == 'secret') {
+        }
         else {
             clearInput();
             addToDisplayText('Invalid input, please try again.');

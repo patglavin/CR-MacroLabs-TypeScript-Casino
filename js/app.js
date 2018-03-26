@@ -1,9 +1,12 @@
 var el = document.getElementById('display');
 var title = document.getElementById('game_title');
+var shot = document.getElementById('drink');
+var overlay = document.getElementById('overlay');
 let userInput;
 let currentGame = false;
 let userName;
 let userFunds;
+let drinks = 0;
 function addToDisplayText(text) {
     if (text != '') {
         el.innerText += '\n';
@@ -21,6 +24,11 @@ btn.addEventListener("click", (e) => addToDisplayText('you input ' + userInput))
 var flipper = document.getElementById('coinflip');
 var coinflipper = new CoinFlip();
 flipper.addEventListener('click', (e) => coinflipper.flipCoin());
+shot.addEventListener('click', (e) => takeShot());
+function takeShot() {
+    drinks += 1;
+    el.style.webkitFilter = "blur(" + drinks + "px)";
+}
 function clearInput() {
     inputField.value = '';
 }
