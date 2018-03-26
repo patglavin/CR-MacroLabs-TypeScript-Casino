@@ -5,7 +5,7 @@ class Horse {
         this.payout = (3 - this.baseSpeed);
     }
     run() {
-        this.raceSpeed = (Math.floor(Math.random() * 3) * this.baseSpeed);
+        this.raceSpeed = (Math.random() * this.baseSpeed);
         console.log(this.name + " ran at " + this.raceSpeed);
         return this.raceSpeed;
     }

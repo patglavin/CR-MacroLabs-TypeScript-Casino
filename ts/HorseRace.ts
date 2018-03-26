@@ -15,6 +15,10 @@ class HorseRace {
     }
 
     begin(){
+        console.log('starting balance of ' + this.profile.getChips)
+        // for testing, REMOVE LATER
+        this.race();
+        // for testing, REMOVE LATER
         console.log('begin horse race');
         addToDisplayText('Select your horse. Your options are:');
         addToDisplayText('Hoof Master: Highest Speed, Lowest Payout');
@@ -51,13 +55,40 @@ class HorseRace {
         console.log(this.selectedHorse)
         addToDisplayText(this.selectionMessage(this.selectedHorse));
         addToDisplayText('Please place your bet');
+        btn.addEventListener('click', (e:Event) => this.acceptBet(), {once:true});
     }
 
     acceptBet(){
         this.bet = parseInt(userInput);
+        addToDisplayText('You have bet ' + this.bet);
+        this.race();
     }
 
     selectionMessage(horse:Horse):string{
         return 'You have selected ' + horse.name;
+    }
+
+    race(){
+        let winnerSpeed:number = 0;
+        let winnerHorse:Horse;
+        this.horses.forEach(horse => {
+            horse.run();
+            console.log(horse.name + " ran at " + horse.raceSpeed);
+            if (horse.raceSpeed > winnerSpeed) {
+                winnerSpeed = horse.raceSpeed;
+                winnerHorse = horse;
+            }
+        });
+        if (this.selectedHorse == winnerHorse) {
+            let winnings:number = this.bet * winnerHorse.payout;
+            addToDisplayText('Your horse wins! You win ' + winnings + ' chips!');
+            this.profile.addChips(winnings);
+            console.log(winnings + 'won');
+        } else {
+            addToDisplayText('You lose!');
+            this.profile.subtractChips(this.bet);
+        }
+        console.log('new balance of ' + this.profile.getChips)
+        addToDisplayText('Your new balance is ' + this.profile.getChips);
     }
 }
