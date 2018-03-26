@@ -16,9 +16,6 @@ class HorseRace {
 
     begin(){
         console.log('starting balance of ' + this.profile.getChips)
-        // for testing, REMOVE LATER
-        this.race();
-        // for testing, REMOVE LATER
         console.log('begin horse race');
         addToDisplayText('Select your horse. Your options are:');
         addToDisplayText('Hoof Master: Highest Speed, Lowest Payout');
