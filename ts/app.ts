@@ -2,6 +2,7 @@ var el: HTMLElement = document.getElementById('display');
 var title: HTMLElement = document.getElementById('game_title');
 var shot:HTMLElement = document.getElementById('drink');
 var overlay:HTMLElement = document.getElementById('overlay');
+var body:HTMLElement = document.getElementById('body');
 
 let userInput:string;
 let currentGame = false;
@@ -33,7 +34,7 @@ flipper.addEventListener('click', (e:Event) => coinflipper.flipCoin());
 shot.addEventListener('click', (e:Event) => takeShot());
 function takeShot() {
     drinks += 1
-    el.style.webkitFilter = "blur("+ drinks +"px)";
+    body.style.webkitFilter = "blur("+ drinks +"px)";
 }
 
 function clearInput() {

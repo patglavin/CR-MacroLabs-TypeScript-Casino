@@ -25,7 +25,7 @@ class MainMenu{
         this.profile = new Profile(this.name, this.initialFunds);
         btn.addEventListener('click', this.gameChoice, {once:true})
         addToDisplayText('Alright, you\'ll start at ' + this.initialFunds);
-        addToDisplayText('Which game would you like to play? We\'ve got\n - BlackJack')
+        addToDisplayText('Which game would you like to play? We\'ve got\n - BlackJack\n - No Secret Text Adventures')
     }
 
     getGameChoice(){
@@ -33,7 +33,8 @@ class MainMenu{
         if (choice.toLowerCase() == 'blackjack') {
             this.blackJackTurn();
         } else if (choice.toLowerCase() == 'secret'){
-            
+            addToDisplayText('ah shit i forgot to add a text game');
+            clearInput();
         } else {
             clearInput();
             addToDisplayText('Invalid input, please try again.')

@@ -3,6 +3,7 @@ class BlackJack extends CardGame {
         super();
         this.turnOrder = 0;
         el.style.fontFamily = "Georgia";
+        body.style.webkitFilter = "sepia(0.6)";
         title.style.fontFamily = "Chicle";
         title.innerText = "Blackjack";
         this.player = new BlackJackPlayer(profile);

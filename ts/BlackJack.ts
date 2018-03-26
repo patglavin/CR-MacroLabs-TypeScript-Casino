@@ -6,6 +6,7 @@ class BlackJack extends CardGame{
     constructor(profile:Profile) {
         super();
         el.style.fontFamily = "Georgia";
+        body.style.webkitFilter = "sepia(0.6)";
         title.style.fontFamily = "Chicle"
         title.innerText = "Blackjack"
         this.player = new BlackJackPlayer(profile);
@@ -58,7 +59,7 @@ class BlackJack extends CardGame{
                 this.updateInput();
             } else {
                 addToDisplayText('ok goodbye forever');
-                
+
                 mainMenu.getGameChoice();
             }
             inputField.value = '';
