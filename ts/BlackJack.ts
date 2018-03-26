@@ -5,6 +5,9 @@ class BlackJack extends CardGame{
     bet: number;
     constructor(profile:Profile) {
         super();
+        el.style.fontFamily = "Georgia";
+        title.style.fontFamily = "Chicle"
+        title.innerText = "Blackjack"
         this.player = new BlackJackPlayer(profile);
         addToDisplayText('Hello ' + this.player.profile.getName + '! Welcome to the BlackJack Table.');
     }

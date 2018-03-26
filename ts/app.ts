@@ -1,4 +1,5 @@
 var el: HTMLElement = document.getElementById('display');
+var title: HTMLElement = document.getElementById('game_title');
 let userInput:string;
 let currentGame = false;
 let userName:string;
